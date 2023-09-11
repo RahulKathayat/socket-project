@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import { SignOutButton, useAuth,UserButton } from "@clerk/clerk-react";
+import { useAuth,UserButton } from "@clerk/clerk-react";
 import { Editor } from "novel";
 import "novel/styles.css";
 
@@ -102,6 +102,9 @@ const Home = ({ socket }) => {
 					<header className='editor__header'>
 						<button className=' editorBtn' onClick={handleSubmit}>
 							SEND MESSAGE
+						</button>
+						<button className=' editorBtn' onClick={()=> setWrite(false)}>
+							CANCEL
 						</button>
 					</header>
 

@@ -13,7 +13,7 @@ import {
 if (!import.meta.env.VITE_REACT_APP_CLERK_PUBLISHABLE_KEY) {
 	throw new Error("Missing Publishable Key");
 }
-const socket = socketIO.connect("http://localhost:4000");
+const socket = socketIO.connect(import.meta.env.VITE_URL);
 const clerkPubKey = import.meta.env.VITE_REACT_APP_CLERK_PUBLISHABLE_KEY;
 
 const App = () => {
