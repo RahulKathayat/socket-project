@@ -14,11 +14,14 @@ const Home = ({ socket }) => {
 	const lastMessageRef = useRef(null);
 
 	const handleSubmit = () => {
-		socket.emit("message", {
-			value,
-			userId: userId.slice(0, 10),
-		});
-		setWrite(false);
+		if(value[0]!==" "){
+			socket.emit("message", {
+				value,
+				userId: userId.slice(0, 10),
+			});
+			setValue([" "]);
+			setWrite(false);
+		}
 	};
 
 	const updateMessage = (array) => {
@@ -28,6 +31,7 @@ const Home = ({ socket }) => {
 				elements.push(array[i].content[0].text);
 			}
 		}
+		console.log(elements);
 		return elements.join("\n");
 	};
 
@@ -109,7 +113,10 @@ const Home = ({ socket }) => {
 					</header>
 
 					<div className='editor__container'>
-						<Editor onUpdate={(e) => setValue(updateMessage(e.content))} />
+						<Editor defaultValue=" " onUpdate={(e) => {
+							console.log(e.content);
+							setValue(updateMessage(e.content));
+						}} />
 					</div>
 				</main>
 			)}
